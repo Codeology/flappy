@@ -44,7 +44,7 @@ deactivate
 ### **Pygame**
 Pygame will be the package we use to create our game.
 ```
-python3 -m pip install -U pygame --user
+python3 -m pip install -U pygame
 python3 -m pygame.examples.aliens
 ```
 If running the demo game works, you're good to go.
