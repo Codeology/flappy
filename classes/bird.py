@@ -1,12 +1,11 @@
 import pygame
-import math
 import os
 
 class Bird:
     GRAVITY = 1800
     JUMP_VELOCITY = 600
     COLORS = ["blue", "green", "orange", "purple", "red", "yellow"]
-    IMAGES = {color: pygame.image.load(os.path.join("assets/bird", "bird-{}.png".format(color))) for color in COLORS}
+    IMAGES = {color: pygame.image.load(os.path.join("./assets/bird", "bird-{}.png".format(color))) for color in COLORS}
     for color in IMAGES:
         IMAGES[color] = pygame.transform.scale(IMAGES[color], (IMAGES[color].get_width() * 3, IMAGES[color].get_height() * 3))
     MAX_ANGLE = 30
@@ -15,10 +14,10 @@ class Bird:
     birds = []
 
     def __init__(self, x, y, color):
-        self.color = color # bird color
+        self.color = color
         self.image = self.IMAGES[color]
         self.rect = pygame.Rect(x, y, self.image.get_width(), self.image.get_height())
-        self.vy = 0 # y velocity
+        self.vy = 0
         self.angle = 0
 
     def update(self, dt):
@@ -27,9 +26,9 @@ class Bird:
 
         # Rotate
         self.angle -= self.ROT_V * dt
-        if self.vy > 0 and self.angle < self.MIN_ANGLE:
-            self.angle = -self.MIN_ANGLE
-    
+        if self.vy > 0 and self.angle < -90:
+            self.angle = -90
+
     def jump(self):
         self.vy = self.JUMP_VELOCITY
         self.angle = self.MAX_ANGLE
@@ -38,7 +37,7 @@ class Bird:
         position = self.rect.center
         rotated_image = pygame.transform.rotate(image, angle)
         rotated_image.get_rect().center = position
-        return rotated_image
+        return rotated_image 
 
     def draw(self, screen):
         rotated_image = self.rotate_image(self.image, self.angle)
