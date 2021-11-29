@@ -2,12 +2,16 @@ import pygame, random
 from classes.background import Background
 from classes.bird import Bird
 from classes.pipe import Pipe
+pygame.mixer.init()
 pygame.init()
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1024, 768
+SCREEN_WIDTH, SCREEN_HEIGHT = 500, 768
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FONT = pygame.font.Font('freesansbold.ttf', 72)
-pygame.display.set_caption("Codeology")
+pygame.display.set_caption("NEAT - Flappy Bird")
+
+flap_sound = pygame.mixer.Sound("./assets/bird/wing.mp3")
+point_sound = pygame.mixer.Sound("./assets/point.mp3")
 
 def display_score(score):
     score_img = FONT.render("{}".format(score), True, (255, 255, 255))
@@ -15,6 +19,7 @@ def display_score(score):
 
 def main():
     FPS = 60
+    frame = 0
 
     run = True
 
@@ -35,10 +40,12 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     for bird in Bird.birds:
                         bird.jump()
+                        flap_sound.play()
 
         if len(Pipe.pipes) == 0 or Pipe.pipes[-1].right() < SCREEN_WIDTH - 300: 
             bottom_y = random.randint(300, SCREEN_HEIGHT - 200)
@@ -76,12 +83,11 @@ def main():
             if pipe.right() < SCREEN_WIDTH // 2 and not pipe.scored:
                 pipe.scored = 1
                 score += 1
+                point_sound.play()
 
         display_score(score)
         pygame.display.update()
         clock.tick(FPS)
-
-    pygame.quit()
 
 if __name__ == "__main__":
     main()

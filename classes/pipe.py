@@ -26,12 +26,6 @@ class Pipe:
     def bottom_pipe_y(self):
         return self.bottom_pipe_rect.top
 
-    def dist_to_top_pipe(self, x, y):
-        return ((x - self.top_pipe_rect.centerx)**2 + (y - self.top_pipe_rect.bottom)**2)**0.5
-
-    def dist_to_bottom_pipe(self, x, y):
-        return ((x - self.bottom_pipe_rect.centerx)**2 + (y - self.bottom_pipe_rect.top)**2)**0.5
-
     def update(self, dt):
         self.bottom_pipe_rect.x -= self.v * dt
         self.top_pipe_rect.x -= self.v * dt

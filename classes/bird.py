@@ -8,7 +8,7 @@ class Bird:
     COLORS = ["blue", "green", "orange", "purple", "red", "yellow"]
     IMAGES = {color: pygame.image.load(os.path.join("assets/bird", "bird-{}.png".format(color))) for color in COLORS}
     for color in IMAGES:
-        IMAGES[color] = pygame.transform.scale(IMAGES[color], (IMAGES[color].get_width() * 3, IMAGES[color].get_width() * 3))
+        IMAGES[color] = pygame.transform.scale(IMAGES[color], (IMAGES[color].get_width() * 3, IMAGES[color].get_height() * 3))
     MAX_ANGLE = 30
     MIN_ANGLE = -90
     ROT_V = 100
@@ -27,10 +27,8 @@ class Bird:
 
         # Rotate
         self.angle -= self.ROT_V * dt
-        if self.vy > 0 and self.angle > self.MAX_ANGLE:
-            self.angle = self.MAX_ANGLE
-        if self.vy > 0 and self.angle < -90:
-            self.angle = -90
+        if self.vy > 0 and self.angle < self.MIN_ANGLE:
+            self.angle = -self.MIN_ANGLE
     
     def jump(self):
         self.vy = self.JUMP_VELOCITY
@@ -45,7 +43,6 @@ class Bird:
     def draw(self, screen):
         rotated_image = self.rotate_image(self.image, self.angle)
         screen.blit(rotated_image, (self.rect.x, self.rect.y))
-        # pygame.draw.rect(screen, self.color, (self.rect.x, self.rect.y, self.rect.width, self.rect.height), 2)
 
     def get_mask(self):
         rotated_image = self.rotate_image(self.image, self.angle)

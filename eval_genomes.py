@@ -4,10 +4,10 @@ from classes.bird import Bird
 from classes.pipe import Pipe
 pygame.init()
 
-SCREEN_WIDTH, SCREEN_HEIGHT = 1024, 768
+SCREEN_WIDTH, SCREEN_HEIGHT = 500, 768
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 FONT = pygame.font.Font('freesansbold.ttf', 72)
-pygame.display.set_caption("Codeology")
+pygame.display.set_caption("NEAT - Flappy Bird")
 
 def display_score(score):
     score_img = FONT.render("{}".format(score), True, (255, 255, 255))
@@ -19,9 +19,9 @@ def remove_bird(i, genomes, nets, score):
     genomes.pop(i)
     nets.pop(i)
 
-
 def eval_genomes(genomes, config):
     FPS = 60
+    frame = 0
 
     run = True
 
@@ -62,12 +62,12 @@ def eval_genomes(genomes, config):
                 if pipe.right() >= SCREEN_WIDTH // 2:
                     closest_pipe = pipe
                     break
-            output = nets[i].activate((bird.rect.y, closest_pipe.top_pipe_y(), closest_pipe.bottom_pipe_y()))
+            output = nets[i].activate((bird.rect.y, abs(closest_pipe.top_pipe_y() - bird.rect.y), (closest_pipe.bottom_pipe_y() - bird.rect.y)))
             if output[0] > 0.5:
                 bird.jump()
 
         # Updating and drawing
-        dt = 1 / FPS
+        dt = 1 / 60
         
         SCREEN.fill((255, 255, 255)) # Clear background
         
