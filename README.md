@@ -1,5 +1,23 @@
 # NEAT - Codeology Fall 2021
 
+## **Member Projects**
+<hr>
+
+Ash Chang - https://github.com/ashchangg/flappy_special 
+
+Ernest Goh - https://github.com/ernestggoh/SpaceInvadersNEAT
+
+Ramya Chitturi - https://github.com/r-chitturi/flappy_NEAT_qlearning 
+
+Euhan Kim - https://github.com/euhan123/NEAT-SpaceInvaders
+
+Maya Zheng - 
+
+## **Tutorial**
+<hr>
+
+Find the tutorial on Notion [here](https://chemical-linen-be0.notion.site/FlapPy-68ea8a19ea0c42fe853e27daf93ca3cb)!
+
 ## **Setup**
 <hr>
 
