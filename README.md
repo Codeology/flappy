@@ -1,8 +1,5 @@
 # Flappy - Codeology Fall 2021
 
-## **Description**
-<hr>
-
 Flappy is a game dev + AI project that uses the NEAT (Neuroevolution of Augmenting Topologies) algorithm to train a neural net for playing Flappy Bird.
 
 ## **Member Projects**
@@ -18,7 +15,7 @@ Ramya Chitturi - https://github.com/r-chitturi/flappy_NEAT_qlearning
 
 Euhan Kim - https://github.com/euhan123/NEAT-SpaceInvaders
 
-Maya Zheng - 
+Maya Zheng - https://github.com/mayaz8h/jetpackjoyride0 
 
 ## **Tutorial**
 <hr>
